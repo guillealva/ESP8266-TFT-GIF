@@ -2,7 +2,7 @@
 
 Este proyecto muestra cómo programar un ESP8266 12E con una pantalla TFT ST7735 para mostrar un GIF animado.
 
-## 📷 Ejemplo del Resultado Final
+![alt text](/IMG_9105.mov)
 
 ---
 
