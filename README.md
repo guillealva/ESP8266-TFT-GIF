@@ -1,30 +1,28 @@
-ESP8266 12E + TFT ST7735 - Mostrar GIF Animado
+# ESP8266 12E + TFT ST7735 - Mostrar GIF Animado
 
 Este proyecto muestra cómo programar un ESP8266 12E con una pantalla TFT ST7735 para mostrar un GIF animado.
 
-📷 Ejemplo del Resultado Final
+## 📷 Ejemplo del Resultado Final
 
+---
 
+## 🛠 Requisitos
 
-🛠 Requisitos
+### Hardware
 
-Hardware
+- ESP8266 12E (chip directamente, no NodeMCU)
+- Pantalla TFT ST7735
+- Cables de conexión
+- Fuente de alimentación 3.3V (o regulador de voltaje)
 
-ESP8266 12E (chip directamente, no NodeMCU)
+### Software
 
-Pantalla TFT ST7735
+- [Arduino IDE](https://www.arduino.cc/en/software)
+- Biblioteca [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)
 
-Cables de conexión
+---
 
-Fuente de alimentación 3.3V (o regulador de voltaje)
-
-Software
-
-Arduino IDE
-
-Biblioteca TFT_eSPI
-
-🔌 Conexión (Wiring)
+## 🔌 Conexión (Wiring)
 
 Conectar los pines de la pantalla TFT ST7735 al ESP8266 12E siguiendo esta tabla:
 
@@ -37,26 +35,30 @@ VCC - Vin
 LED - Vin
 GND - GND
 
-📷 Sugerencia de imagen: Un diagrama de conexión con el ESP8266 12E y la pantalla TFT.
 
-🚀 Pasos para Programar el ESP8266
+📷 **Sugerencia de imagen:** Un diagrama de conexión con el ESP8266 12E y la pantalla TFT.
 
-1️⃣ Convertir el GIF a Imágenes
+---
 
-Accede a EZGIF.
+## 🚀 Pasos para Programar el ESP8266
 
-Sube el GIF y ajusta el número de frames para optimizar el rendimiento.
+### 1️⃣ Convertir el GIF a Imágenes
 
-Divide el GIF en imágenes JPEG y descárgalas.
+1. Accede a [EZGIF](https://ezgif.com/split).
+2. Sube el GIF y ajusta el número de frames para optimizar el rendimiento.
+3. Divide el GIF en imágenes JPEG y descárgalas.
 
-📷 Sugerencia de imagen: Captura de pantalla del proceso en EZGIF.
+📷 **Sugerencia de imagen:** Captura de pantalla del proceso en EZGIF.
 
-2️⃣ Convertir las Imágenes a Código
+---
 
-Cada imagen debe convertirse en un array de colores en formato uint16_t. Usa un conversor de imágenes a código como LCD Image Converter.
+### 2️⃣ Convertir las Imágenes a Código
+
+Cada imagen debe convertirse en un array de colores en formato `uint16_t`. Usa un conversor de imágenes a código como [LCD Image Converter](https://www.riuson.com/lcd-image-converter/).
 
 Formato esperado:
 
+```cpp
 int frames = 29;
 int animation_width = 67;
 int animation_height = 100;
@@ -65,23 +67,24 @@ const unsigned short PROGMEM walk[][6700] = {
   {0xFFDF, 0xFFFF, 0xFFFF, ...}, // Frame 2
   // ...
 };
-
+```
 Guarda el resultado como animation.h.
 
 📷 Sugerencia de imagen: Ejemplo de archivo animation.h generado.
 
-3️⃣ Programar el ESP8266
+### 3️⃣ Programar el ESP8266
 
 Instala la biblioteca TFT_eSPI desde el Administrador de Bibliotecas de Arduino.
 
-Configura User_Setup.h de la biblioteca TFT_eSPI:
+## Configura User_Setup.h de la biblioteca TFT_eSPI:
 
 Define los pines correctos de conexión con #define.
 
 Ajusta la configuración del controlador ST7735.
 
-Carga el siguiente código en el ESP8266:
+## Carga el siguiente código en el ESP8266:
 
+```
 #include <TFT_eSPI.h>
 #include "animation.h"
 
@@ -98,10 +101,11 @@ void loop() {
         delay(100);
     }
 }
+```
 
 📷 Sugerencia de imagen: Captura de pantalla de la configuración en Arduino IDE.
 
-4️⃣ Subir y Ejecutar
+### 4️⃣ Subir y Ejecutar
 
 Conecta el ESP8266 al PC mediante un adaptador USB-Serial (si es necesario).
 
@@ -113,7 +117,7 @@ Una vez completado, la animación debería mostrarse en la pantalla TFT.
 
 📷 Sugerencia de imagen: Foto real del ESP8266 con la pantalla mostrando el GIF.
 
-🎯 Notas Finales
+### 🎯 Notas Finales
 
 Puedes ajustar la velocidad de la animación cambiando delay(100); en el loop().
 
